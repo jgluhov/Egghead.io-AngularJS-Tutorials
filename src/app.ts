@@ -28,7 +28,7 @@ function enter() {
     return function (scope, element, attrs) {
         element.bind('mouseenter', function() {
             element.addClass('panel');
-            //scope.$apply(attrs.enter)
+            scope.$apply(attrs.enter)
         })
     }
 }
