@@ -5,7 +5,9 @@ import * as angular from 'angular'
 
 angular.module('app', [])
     .controller('TutorialCtrl', TutorialCtrl)
-    .filter('reverse', reverseFilter);
+    .filter('reverse', reverseFilter)
+    .directive('enter', enter)
+    .directive('leave', leave);
 
 function TutorialCtrl($scope) {
     $scope.data = { message: '' }
@@ -16,5 +18,21 @@ TutorialCtrl.$inject = ['$scope'];
 function reverseFilter() {
     return function (text) {
         return text.split("").reverse().join("");
+    }
+}
+
+function enter() {
+    return function (scope, element) {
+        element.bind('mouseenter', function() {
+            console.log('MouseEnter Event');
+        })
+    }
+}
+
+function leave() {
+    return function (scope, element) {
+        element.bind('mouseleave', function() {
+            console.log('MouseLeave Event');
+        })
     }
 }
