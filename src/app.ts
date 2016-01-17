@@ -10,7 +10,10 @@ angular.module('app', [])
     .directive('leave', leave);
 
 function TutorialCtrl($scope) {
-    $scope.data = { message: '' }
+    $scope.data = { message: '' };
+    $scope.loadMoreTweets = function() {
+        alert('Loading more tweets');
+    }
 }
 
 TutorialCtrl.$inject = ['$scope'];
@@ -22,9 +25,10 @@ function reverseFilter() {
 }
 
 function enter() {
-    return function (scope, element) {
+    return function (scope, element, attrs) {
         element.bind('mouseenter', function() {
-            console.log('MouseEnter Event');
+            element.addClass('panel');
+            //scope.$apply(attrs.enter)
         })
     }
 }
@@ -32,7 +36,7 @@ function enter() {
 function leave() {
     return function (scope, element) {
         element.bind('mouseleave', function() {
-            console.log('MouseLeave Event');
+            element.removeClass('panel');
         })
     }
 }
